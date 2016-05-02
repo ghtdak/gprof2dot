@@ -39,8 +39,12 @@ if sys.version_info[0] >= 3:
     def compat_iteritems(x): return x.items()  # No iteritems() in Python 3
     def compat_itervalues(x): return x.values()  # No itervalues() in Python 3
     def compat_keys(x): return list(x.keys())  # keys() is a generator in Python 3
+
+    # noinspection PyShadowingBuiltins
     basestring = str  # No class basestring in Python 3
+    # noinspection PyShadowingBuiltins
     unichr = chr # No unichr in Python 3
+    # noinspection PyShadowingBuiltins
     xrange = range # No xrange in Python 3
 else:
     PYTHON_3 = False
@@ -606,6 +610,7 @@ class Profile(Object):
                                     Qd_callee = Qd[callee]
                                     Qd_callee[0] = rank
                                     Qd_callee[1] = member
+                                    # noinspection PyProtectedMember
                                     heapq._siftdown(Q, 0, Q.index(Qd_callee))
                             else:
                                 rank = 1 + member_rank
